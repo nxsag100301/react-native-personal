@@ -3,8 +3,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTab from './src/navigation/bottom-tab';
 import DetailUser from './src/screens/DetailUser/detail-user';
+import Login from './src/screens/Login/login';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export type RootStackParamList = {
+  BottomTab: undefined;
+  DetailUser: {userId: number};
+  Login: undefined;
+};
 
 function RootStack() {
   return (
@@ -19,6 +26,7 @@ function RootStack() {
         component={DetailUser}
         options={{title: 'Chi tiết người dùng'}}
       />
+      <Stack.Screen name="Login" component={Login} options={{title: 'Login'}} />
     </Stack.Navigator>
   );
 }
